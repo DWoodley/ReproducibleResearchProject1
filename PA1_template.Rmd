@@ -7,7 +7,7 @@ output: html_document
 Loading and preprocessing the data
 Show any code that is needed to Load the data
 
-1. Code for reading in the dataset and/or processing the data
+1 Code for reading in the dataset and/or processing the data
 ```{r echo=FALSE}
     #File name activity.csv
     if(exists("activity")) remove("activity")
@@ -44,7 +44,7 @@ Show any code that is needed to Load the data
                                  str_sub(str_pad(as.character(activity$interval),4,
                                         side="left",pad="0"),start=3,end=4),sep=":"),ordered=TRUE)
 ```
-2. Create a histogram of number of steps per day.
+2 Create a histogram of number of steps per day.
 ```{r, echo=TRUE}
     hist(tapply(activity$steps,activity$date,sum,na.rm=TRUE),breaks=50,
          xlab = "Number of steps",
@@ -52,7 +52,7 @@ Show any code that is needed to Load the data
          main = "Frequency of Total Steps Per Day \nOver 61 Day Period (Raw Data)")
 ```
 
-3.  Mean and median number of steps taken each day.
+3  Mean and median number of steps taken each day.
 ```{r, echo=TRUE}
     mean.steps <- round(mean(tapply(activity$steps,activity$date,sum,na.rm=TRUE)))
     median.steps <- median(tapply(activity$steps,activity$date,sum,na.rm=TRUE))
@@ -62,7 +62,7 @@ Show any code that is needed to Load the data
 
 ```
 
-4.  Time series plot of the average number of steps taken
+4  Time series plot of the average number of steps taken
 ```{r, echo=TRUE}
     avg.steps.by.time <- tapply(activity$steps,activity$interval,mean,na.rm=TRUE,ordered=TRUE)
     
@@ -83,7 +83,7 @@ Show any code that is needed to Load the data
 ```
    
    
-5.  The 5-minute interval that, on average, contains the maximum number of steps
+5  The 5-minute interval that, on average, contains the maximum number of steps
 ```{r}
     max.interval <- t.avg.steps[t.avg.steps$avg.steps.by.time 
                                 == max(t.avg.steps$avg.steps.by.time)]$interval
@@ -93,7 +93,7 @@ Show any code that is needed to Load the data
 ```
 
 
-6.  Code to describe and show a strategy for imputing missing data
+6  Code to describe and show a strategy for imputing missing data
 ```{r}
     
     num.missing.vals <- sum(is.na(activity$steps))
@@ -107,7 +107,7 @@ Show any code that is needed to Load the data
     }
 
 ```
-7.  Histogram of the total number of steps taken each day after missing values are imputed
+7  Histogram of the total number of steps taken each day after missing values are imputed
 ```{r, echo=TRUE}
     xpar <- par(mfrow = c(2,1))
     
@@ -123,7 +123,7 @@ Show any code that is needed to Load the data
     
     par(xpar)
 ```
-8.  Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
+8  Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
 ```{r, echo=TRUE}
     imputed.activity$daytype <- factor("Weekday",levels=c("Weekday","Weekend"))
     imputed.activity[is.weekend(imputed.activity$datetime),]$daytype <- factor("Weekend")
